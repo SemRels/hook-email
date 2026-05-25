@@ -8,12 +8,12 @@ import (
 	"log"
 	"os"
 
-	grpcserver "github.com/SemRels/plugin-template/internal/grpc"
-	semrelplugin "github.com/SemRels/plugin-template/internal/plugin"
+	grpcserver "github.com/SemRels/hook-email/internal/grpc"
+	semrelplugin "github.com/SemRels/hook-email/internal/plugin"
 )
 
 func main() {
-	provider := semrelplugin.NewProvider("replace-me")
+	provider := semrelplugin.NewProvider("hook-email")
 	server := grpcserver.NewProviderServer(provider)
 
 	if _, err := server.Health(context.Background()); err != nil {
