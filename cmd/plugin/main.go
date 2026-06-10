@@ -21,7 +21,7 @@ var newMailer = func(cfg plugin.EmailConfig) mailer {
 }
 
 func run(ctx context.Context, getenv func(string) string, stderr io.Writer) int {
-	fmt.Fprintf(stderr, "plugin_schema_version=%d\n", pluginSchemaVersion)
+	_, _ = fmt.Fprintf(stderr, "plugin_schema_version=%d\n", pluginSchemaVersion)
 	host := getenv("SEMREL_PLUGIN_SMTP_HOST")
 	from := getenv("SEMREL_PLUGIN_FROM")
 	to := plugin.ParseRecipients(getenv("SEMREL_PLUGIN_TO"))
