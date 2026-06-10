@@ -49,7 +49,7 @@ func TestRun_Success(t *testing.T) {
 		"SEMREL_TAG_NAME":         "v1.2.3",
 	}), &stderr)
 
-	if code != 0 || stderr.Len() != 0 {
+	if code != 0 || stderr.String() != "plugin_schema_version=1\n" {
 		t.Fatalf("unexpected result: code=%d stderr=%q", code, stderr.String())
 	}
 	if fake.version != "v1.2.3" || fake.changelog != "- feature" || fake.tagName != "v1.2.3" {
