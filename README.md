@@ -6,9 +6,28 @@ This plugin is distributed as the standalone Go binary `semrel-plugin-hook-email
 
 ## Installation
 
+### Binary
+
 ```bash
 go install github.com/SemRels/hook-email/cmd/plugin@latest
 ```
+
+### Docker
+
+Pre-built, multi-platform images (linux/amd64, linux/arm64) are published to the GitHub Container Registry on every release:
+
+```bash
+docker pull ghcr.io/semrels/hook-email:latest
+```
+
+Images are signed with [cosign](https://github.com/sigstore/cosign) and include a full SBOM attestation. Verify the signature:
+
+```bash
+cosign verify ghcr.io/semrels/hook-email:latest \
+  --certificate-identity-regexp 'https://github.com/SemRels/hook-email/.github/workflows/release.yml.*' \
+  --certificate-oidc-issuer https://token.actions.githubusercontent.com
+```
+
 
 ## Configuration
 
