@@ -1,6 +1,6 @@
 # hook-email
 
-[![Latest Release](https://img.shields.io/github/v/release/SemRels/hook-email?label=version\&color=blue)](https://github.com/SemRels/hook-email/releases/latest)
+[![Latest Release](https://img.shields.io/github/v/release/SemRels/hook-email?label=version&color=blue)](https://github.com/SemRels/hook-email/releases/latest)
 
 Sends a release notification email with the new version and changelog details.
 
