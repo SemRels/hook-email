@@ -28,11 +28,11 @@ func run(ctx context.Context, getenv func(string) string, stderr io.Writer) int 
 	version := firstNonEmpty(getenv("SEMREL_VERSION"), getenv("SEMREL_TAG_NAME"), getenv("SEMREL_NEXT_VERSION"))
 
 	if host == "" || from == "" || len(to) == 0 {
-		fmt.Fprintln(stderr, "hook-email: SEMREL_PLUGIN_SMTP_HOST, SEMREL_PLUGIN_FROM, and SEMREL_PLUGIN_TO are required")
+		_, _ = fmt.Fprintln(stderr, "hook-email: SEMREL_PLUGIN_SMTP_HOST, SEMREL_PLUGIN_FROM, and SEMREL_PLUGIN_TO are required")
 		return 1
 	}
 	if version == "" {
-		fmt.Fprintln(stderr, "hook-email: SEMREL_VERSION, SEMREL_TAG_NAME, or SEMREL_NEXT_VERSION is required")
+		_, _ = fmt.Fprintln(stderr, "hook-email: SEMREL_VERSION, SEMREL_TAG_NAME, or SEMREL_NEXT_VERSION is required")
 		return 1
 	}
 	if getenv("SEMREL_DRY_RUN") == "true" {
@@ -49,7 +49,7 @@ func run(ctx context.Context, getenv func(string) string, stderr io.Writer) int 
 	}
 
 	if err := newMailer(cfg).Notify(ctx, version, getenv("SEMREL_CHANGELOG"), getenv("SEMREL_TAG_NAME")); err != nil {
-		fmt.Fprintln(stderr, "hook-email:", err)
+		_, _ = fmt.Fprintln(stderr, "hook-email:", err)
 		return 1
 	}
 	return 0
