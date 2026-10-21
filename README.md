@@ -1,6 +1,10 @@
 # hook-email
 
 [![Latest Release](https://img.shields.io/github/v/release/SemRels/hook-email?label=version&color=blue)](https://github.com/SemRels/hook-email/releases/latest)
+[![CI](https://github.com/SemRels/hook-email/actions/workflows/ci.yml/badge.svg)](https://github.com/SemRels/hook-email/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/SemRels/hook-email)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/SemRels/hook-email/badge)](https://scorecard.dev/viewer/?uri=github.com/SemRels/hook-email)
+[![REUSE status](https://api.reuse.software/badge/github.com/SemRels/hook-email)](https://api.reuse.software/info/github.com/SemRels/hook-email)
 
 Sends a release notification email with the new version and changelog details.
 
