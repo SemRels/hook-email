@@ -39,31 +39,33 @@ cosign verify ghcr.io/semrels/hook-email:latest \
 
 ```yaml
 plugins:
-  - name: hook-email
-    path: ~/.semrel/plugins/semrel-plugin-hook-email
-    env:
-      SEMREL_PLUGIN_SMTP_HOST: "smtp.example.com"
-      SEMREL_PLUGIN_SMTP_PORT: "587"
-      SEMREL_PLUGIN_SMTP_USER: "semrel-bot"
-      SEMREL_PLUGIN_SMTP_PASS: "${SMTP_PASSWORD}"
-      SEMREL_PLUGIN_FROM: "semrel@example.com"
-      SEMREL_PLUGIN_TO: "team@example.com,ops@example.com"
-      SEMREL_PLUGIN_SUBJECT_TEMPLATE: "Release {{ .TagName }} is live"
-      SEMREL_PLUGIN_TLS: "true"
+  - uses: "@semrel/hook-email"
+    phase: release
+    args:
+      smtp_host: "smtp.example.com"
+      smtp_port: "587"
+      smtp_user: "semrel-bot"
+      smtp_pass: "${SMTP_PASSWORD}"
+      from: "semrel@example.com"
+      to: "team@example.com,ops@example.com"
+      subject_template: "Release {{ .TagName }} is live"
+      tls: "true"
 ```
 
-## `SEMREL_PLUGIN_*` variables
+## Options
 
-| Name | Required | Description | Default |
-| --- | --- | --- | --- |
-| `SEMREL_PLUGIN_SMTP_HOST` | Required | SMTP server hostname. | None |
-| `SEMREL_PLUGIN_SMTP_PORT` | Optional | SMTP server port. | 587 |
-| `SEMREL_PLUGIN_SMTP_USER` | Required | SMTP username used for authentication. | None |
-| `SEMREL_PLUGIN_SMTP_PASS` | Required | SMTP password used for authentication. | None |
-| `SEMREL_PLUGIN_FROM` | Required | From address for the release email. | None |
-| `SEMREL_PLUGIN_TO` | Required | Comma-separated list of recipient email addresses. | None |
-| `SEMREL_PLUGIN_SUBJECT_TEMPLATE` | Optional | Custom subject template for the release email. | Built-in subject |
-| `SEMREL_PLUGIN_TLS` | Optional | Enable or disable TLS for the SMTP connection. | true |
+Every option can be set as an entry under `args` in `.semrel.yaml`. semrel passes each entry to the plugin as the environment variable shown in the table, so you can also set that variable directly (for example in your CI environment) instead of using `args`.
+
+| Argument | Environment variable | Required | Description | Default |
+| --- | --- | --- | --- | --- |
+| `smtp_host` | `SEMREL_PLUGIN_SMTP_HOST` | Required | SMTP server hostname. | None |
+| `smtp_port` | `SEMREL_PLUGIN_SMTP_PORT` | Optional | SMTP server port. | 587 |
+| `smtp_user` | `SEMREL_PLUGIN_SMTP_USER` | Required | SMTP username used for authentication. | None |
+| `smtp_pass` | `SEMREL_PLUGIN_SMTP_PASS` | Required | SMTP password used for authentication. | None |
+| `from` | `SEMREL_PLUGIN_FROM` | Required | From address for the release email. | None |
+| `to` | `SEMREL_PLUGIN_TO` | Required | Comma-separated list of recipient email addresses. | None |
+| `subject_template` | `SEMREL_PLUGIN_SUBJECT_TEMPLATE` | Optional | Custom subject template for the release email. | Built-in subject |
+| `tls` | `SEMREL_PLUGIN_TLS` | Optional | Enable or disable TLS for the SMTP connection. | true |
 
 ## `SEMREL_*` release context used
 
